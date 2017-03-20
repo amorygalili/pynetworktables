@@ -21,7 +21,8 @@ class NtCoreApi(object):
         self.notifier = Notifier(verbose=verbose)
         self.rpc_server = RpcServer()
         self.storage = Storage(self.notifier, self.rpc_server)
-        self.dispatcher = Dispatcher(self.storage, self.notifier, verbose=verbose)
+        self.dispatcher = Dispatcher(self.storage, self.notifier, verbose=verbose,
+                                     stream_debug=stream_debug)
         
     def stop(self):
         self.dispatcher.stop()

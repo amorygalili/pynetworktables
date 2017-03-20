@@ -33,10 +33,11 @@ logger = logging.getLogger('nt')
 
 class Dispatcher(object):
     
-    def __init__(self, storage, notifier, verbose=False):
+    def __init__(self, storage, notifier, verbose=False, stream_debug=False):
         
         # logging debugging
         self.m_verbose = verbose
+        self.m_stream_debug = stream_debug
         
         self.m_storage = storage
         self.m_notifier = notifier
@@ -338,7 +339,8 @@ class Dispatcher(object):
                 conn = NetworkConnection(stream, self.m_notifier,
                                          self._serverHandshake,
                                          self.m_storage.getEntryType,
-                                         verbose=self.m_verbose)
+                                         verbose=self.m_verbose,
+                                         stream_debug=self.m_stream_debug)
                 
                 conn.set_process_incoming(self.m_storage.processIncoming)
                     
@@ -391,7 +393,8 @@ class Dispatcher(object):
                     conn = NetworkConnection(stream, self.m_notifier,
                                              self._clientHandshake,
                                              self.m_storage.getEntryType,
-                                             verbose=self.m_verbose)
+                                             verbose=self.m_verbose,
+                                             stream_debug=self.m_stream_debug)
                     
                     conn.set_process_incoming(self.m_storage.processIncoming)
                     
