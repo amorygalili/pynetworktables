@@ -17,7 +17,7 @@ class NtCoreApi(object):
         would want to do this.
     '''
     
-    def __init__(self, verbose=False):
+    def __init__(self, verbose=False, stream_debug='file.bin'):
         self.notifier = Notifier(verbose=verbose)
         self.rpc_server = RpcServer()
         self.storage = Storage(self.notifier, self.rpc_server)
